@@ -9,7 +9,7 @@ function Character() {
   return (
     <div>
       {characters?.map((character) => (
-        <Cards char={character} />
+        <Cards char={character} key={character.id} />
       ))}
     </div>
   );
