@@ -23,7 +23,10 @@ export interface store {
   allCharacters: character[];
   getCharacters: () => Promise<void>;
   locations: any;
+  locationsFilter: string;
+  originsFilter: string;
   getLocation: () => void;
   alphabeticalOrder: (order: string) => void;
-  filterLocation: (order: string) => void;
+  filterLocation: (locartion: string) => void;
+  filterOrigin: (origin: string) => void;
 }

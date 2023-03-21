@@ -7,8 +7,13 @@ const SearchBar: React.FC<{
   buscador: string;
   setBuscador: (value: string) => void;
 }> = ({ buscador, setBuscador }) => {
-  const { alphabeticalOrder, getLocation, locations, filterLocation } =
-    useStore();
+  const {
+    alphabeticalOrder,
+    getLocation,
+    locations,
+    filterLocation,
+    filterOrigin,
+  } = useStore();
   const [alphabeticalOrderSelected, setAlphabeticalOrderSelected] =
     useState<string>("");
   const [alphabeticalOrderInitialValue, setAlphabeticalOrderInitialValue] =
@@ -21,12 +26,20 @@ const SearchBar: React.FC<{
     alphabeticalOrder && alphabeticalOrder(order);
   };
 
+  const [originSelected, setOriginSelected] = useState<string>("");
+  const [originInitialValue, setOriginInitialValue] =
+    useState<string>("All Origins");
+  const filterOriginSelected = (origin: string) => {
+    setOriginSelected(origin);
+    filterOrigin(origin);
+  };
+
   const [locationSelected, setLocationSelected] = useState<string>("");
   const [locationInitialValue, setLocationInitialValue] =
     useState<string>("All Location");
-  const filterLocationSelected = (order: string) => {
-    setLocationSelected(order);
-    filterLocation(order);
+  const filterLocationSelected = (location: string) => {
+    setLocationSelected(location);
+    filterLocation(location);
   };
   useEffect(() => {
     getLocation();
@@ -48,6 +61,12 @@ const SearchBar: React.FC<{
           </div>
         </div>{" "}
         <div className={style.filtros}>
+          <DropDown
+            initialValue={originInitialValue}
+            otions={[originInitialValue, ...locations]}
+            selected={originSelected}
+            setSelected={filterOriginSelected}
+          />
           <DropDown
             initialValue={locationInitialValue}
             otions={[locationInitialValue, ...locations]}

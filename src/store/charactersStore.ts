@@ -5,6 +5,8 @@ export const useStore = create<store>((sset) => ({
   characters: [],
   allCharacters: [],
   locations: [],
+  locationsFilter: "All Location",
+  originsFilter: "All Origins",
   getCharacters: async () => {
     const res = await axios.get("https://rickandmortyapi.com/api/character");
     sset((state) => ({
@@ -59,19 +61,27 @@ export const useStore = create<store>((sset) => ({
     }
   },
   filterLocation: (location) => {
-    console.log(location);
-    if (location === "All Location") {
-      sset((state) => ({
-        ...state,
-        characters: state.allCharacters,
-      }));
-    } else {
-      sset((state) => ({
-        ...state,
-        characters: state.allCharacters.filter(
-          (c) => c.location.name === location
-        ),
-      }));
-    }
+    sset((state) => ({
+      ...state,
+      characters: state.allCharacters.filter(
+        (c) =>
+          (c.location.name === location || location === "All Location") &&
+          (c.origin.name === state.originsFilter ||
+            state.originsFilter === "All Origins")
+      ),
+      locationsFilter: location,
+    }));
+  },
+  filterOrigin: (origin) => {
+    sset((state) => ({
+      ...state,
+      characters: state.allCharacters.filter(
+        (c) =>
+          (c.origin.name === origin || origin === "All Origins") &&
+          (c.location.name === state.locationsFilter ||
+            state.locationsFilter === "All Location")
+      ),
+      originsFilter: origin,
+    }));
   },
 }));

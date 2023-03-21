@@ -10,6 +10,7 @@ function Character() {
   const [pagina, setPagina] = useState<number>(1);
   const [cantidad, setCantidad] = useState<number>(12);
   const { characters, getCharacters, getLocation, locations } = useStore();
+  console.log(characters);
   const render = search(buscador, characters);
   const maximo = render.length / cantidad;
   useEffect(() => {
@@ -35,7 +36,6 @@ function search(buscador: string, characters: character[]) {
   const filtered = characters.filter((car) =>
     car.name.toLowerCase().includes(buscador.toLowerCase())
   );
-
   return filtered;
 }
 
