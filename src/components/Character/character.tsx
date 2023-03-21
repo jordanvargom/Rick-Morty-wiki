@@ -8,7 +8,7 @@ import Paginacion from "../Paginacion/index";
 function Character() {
   const [buscador, setBuscador] = useState<string>("");
   const [pagina, setPagina] = useState<number>(1);
-  const [cantidad, setCantidad] = useState<number>(4);
+  const [cantidad, setCantidad] = useState<number>(12);
   const { characters, getCharacters, getLocation, locations } = useStore();
   const render = search(buscador, characters);
   const maximo = render.length / cantidad;
