@@ -3,7 +3,7 @@ import style from "./dropDown.module.css";
 
 const DropDown: React.FC<{
   selected: string;
-  setSelected: (a: string) => void;
+  setSelected: any;
   otions: string[];
   initialValue: string;
 }> = ({ selected, setSelected, otions, initialValue }) => {
@@ -18,7 +18,7 @@ const DropDown: React.FC<{
         className={style.dropdown_btn}
         onClick={(e) => serIsActive(!isActve)}
       >
-        {!selected.length ? initialValue : selected}
+        {!selected.length ? otions[0] : selected}
       </div>
       {isActve && (
         <div className={style.dropdown_content} ref={ref}>

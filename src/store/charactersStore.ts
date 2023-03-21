@@ -1,38 +1,77 @@
 import create from "zustand";
-import { store } from "./types";
+import { store, character } from "./types";
 import axios from "axios";
-export const useStore = create<store>((set) => ({
+export const useStore = create<store>((sset) => ({
   characters: [],
+  allCharacters: [],
+  locations: [],
   getCharacters: async () => {
     const res = await axios.get("https://rickandmortyapi.com/api/character");
-    set((state) => ({
+    sset((state) => ({
       ...state,
       characters: res.data.results,
+      allCharacters: res.data.results,
     }));
   },
+  getLocation: async () => {
+    const res = await axios.get("https://rickandmortyapi.com/api/character");
+    const locations = res.data.results.map((e: character) => e.location.name);
+    const loc = [...new Set(locations)];
+
+    sset((state) => ({
+      ...state,
+      locations: loc,
+    }));
+  },
+  alphabeticalOrder: (order) => {
+    if (order === "A-Z") {
+      return sset((state) => ({
+        ...state,
+        characters: state.characters.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (b.name > a.name) {
+            return -1;
+          }
+          return 0;
+        }),
+      }));
+    }
+    if (order === "Z-A") {
+      return sset((state) => ({
+        ...state,
+        characters: state.characters.sort((a, b) => {
+          if (a.name > b.name) {
+            return -1;
+          }
+          if (b.name > a.name) {
+            return 1;
+          }
+          return 0;
+        }),
+      }));
+    } else {
+      sset((state) => ({
+        ...state,
+        characters: state.allCharacters,
+      }));
+    }
+  },
+  filterLocation: (location) => {
+    console.log(location);
+    if (location === "All Location") {
+      sset((state) => ({
+        ...state,
+        characters: state.allCharacters,
+      }));
+    } else {
+      sset((state) => ({
+        ...state,
+        characters: state.allCharacters.filter(
+          (c) => c.location.name === location
+        ),
+      }));
+    }
+  },
 }));
-
-// import create from "zustand";
-// import { persist } from "zustand/middleware";
-
-// type favoriteRepoState = {
-//   favoriteReposIds: number[];
-//   addFavoriteRepo: (id: number) => void;
-//   removeFavoriteRepo: (id: number) => void;
-// };
-
-// export const useFavoriteReposStore = create(
-//   persist((set) => ({
-//     favoriteReposIds: [],
-//     addFavoriteRepo: (id: number) =>
-//       set((state) => ({ favoriteReposIds: [...state.favoriteReposIds, id] })),
-//     removeFavoriteRepo: (id: number) =>
-//       set((state) => ({
-//         favoriteReposIds: state.favoriteReposIds.filter(
-//           (repoId) => repoId !== id
-//         ),
-//       })),
-//   }), {
-//     name: "favoriteRepos",
-//   })
-// );

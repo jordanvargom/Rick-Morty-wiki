@@ -5,8 +5,14 @@ export interface character {
   species: string;
   type: string;
   gender: string;
-  origin: object;
-  location: object;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
   image: string;
   episode: [string];
   url: string;
@@ -14,5 +20,10 @@ export interface character {
 }
 export interface store {
   characters: character[];
+  allCharacters: character[];
   getCharacters: () => Promise<void>;
+  locations: any;
+  getLocation: () => void;
+  alphabeticalOrder: (order: string) => void;
+  filterLocation: (order: string) => void;
 }
