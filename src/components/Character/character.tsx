@@ -5,6 +5,7 @@ import Cards from "../Cards/cards";
 import style from "./character.module.css";
 import SearchBar from "../SearchBar/searchBar";
 import Paginacion from "../Paginacion/index";
+import Loaders from "../Loaders/Loaders";
 function Character() {
   const [buscador, setBuscador] = useState<string>("");
   const [pagina, setPagina] = useState<number>(1);
@@ -25,10 +26,13 @@ function Character() {
         setPagina={setPagina}
       />
       <div className={style.cards_Container}>
-        {characters &&
+        {characters.length ? (
           render
             .slice((pagina - 1) * cantidad, (pagina - 1) * cantidad + cantidad)
-            .map((character) => <Cards char={character} key={character.id} />)}
+            .map((character) => <Cards char={character} key={character.id} />)
+        ) : (
+          <Loaders />
+        )}
       </div>
       {render.length && (
         <Paginacion maximo={maximo} pagina={pagina} setPagina={setPagina} />
