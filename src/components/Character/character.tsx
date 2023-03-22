@@ -27,16 +27,29 @@ function Character() {
       />
       <div className={style.cards_Container}>
         {characters.length ? (
-          render
-            .slice((pagina - 1) * cantidad, (pagina - 1) * cantidad + cantidad)
-            .map((character) => <Cards char={character} key={character.id} />)
+          render.length ? (
+            render
+              .slice(
+                (pagina - 1) * cantidad,
+                (pagina - 1) * cantidad + cantidad
+              )
+              .map((character) => <Cards char={character} key={character.id} />)
+          ) : (
+            <>
+              <h1>Character not found</h1>
+              <Loaders />
+            </>
+          )
         ) : (
-          <Loaders />
+          <>
+            <h1>Character not found</h1>
+            <Loaders />
+          </>
         )}
       </div>
-      {render.length && (
+      {render.length ? (
         <Paginacion maximo={maximo} pagina={pagina} setPagina={setPagina} />
-      )}
+      ) : null}
     </div>
   );
 }
