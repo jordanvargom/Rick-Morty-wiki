@@ -8,7 +8,7 @@ import Paginacion from "../Paginacion/index";
 function Character() {
   const [buscador, setBuscador] = useState<string>("");
   const [pagina, setPagina] = useState<number>(1);
-  const [cantidad, setCantidad] = useState<number>(12);
+  const [cantidad, setCantidad] = useState<number>(8);
   const { characters, getCharacters, getLocation, locations } = useStore();
   console.log(characters);
   const render = search(buscador, characters);
@@ -19,7 +19,11 @@ function Character() {
   }, []);
   return (
     <div className={style.Container}>
-      <SearchBar buscador={buscador} setBuscador={setBuscador} />
+      <SearchBar
+        buscador={buscador}
+        setBuscador={setBuscador}
+        setPagina={setPagina}
+      />
       <div className={style.cards_Container}>
         {characters &&
           render

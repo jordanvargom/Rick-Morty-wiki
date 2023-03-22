@@ -6,7 +6,8 @@ import { useStore } from "../../store/charactersStore";
 const SearchBar: React.FC<{
   buscador: string;
   setBuscador: (value: string) => void;
-}> = ({ buscador, setBuscador }) => {
+  setPagina: (value: number) => void;
+}> = ({ buscador, setBuscador, setPagina }) => {
   const {
     alphabeticalOrder,
     getLocation,
@@ -32,6 +33,7 @@ const SearchBar: React.FC<{
   const filterOriginSelected = (origin: string) => {
     setOriginSelected(origin);
     filterOrigin(origin);
+    setPagina(1);
   };
 
   const [locationSelected, setLocationSelected] = useState<string>("");
@@ -40,6 +42,7 @@ const SearchBar: React.FC<{
   const filterLocationSelected = (location: string) => {
     setLocationSelected(location);
     filterLocation(location);
+    setPagina(1);
   };
   useEffect(() => {
     getLocation();

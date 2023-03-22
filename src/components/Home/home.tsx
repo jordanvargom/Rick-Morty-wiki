@@ -1,7 +1,11 @@
+import ImageContainer from "../imageContainer/ImageContainer";
+
 function Home() {
   return (
-    <div>Home</div>
-  )
+    <div>
+      <ImageContainer />
+    </div>
+  );
 }
 
-export default Home
+export default Home;
