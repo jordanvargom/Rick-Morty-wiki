@@ -1,8 +1,9 @@
 .comtainer{
+  margin: 60px 0;
   display: flex;
-  width: 700px;
+  width: 800px;
   height: 430px;
-  
+  box-shadow: 3px 3px 10px 6px #e1e1e1
 }
 
 .comtainer img{

@@ -12,11 +12,11 @@ function Nav() {
             className={style.image}
             onClick={() => nav("/")}
           />
-          <p onClick={() => nav("/character")} className={style.button}>
-            Characters
-          </p>
           <p onClick={() => nav("/")} className={style.button}>
             Home
+          </p>
+          <p onClick={() => nav("/character")} className={style.button}>
+            Characters
           </p>
         </div>
         <div className={style.about}>
