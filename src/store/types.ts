@@ -20,6 +20,7 @@ export interface character {
 }
 export interface store {
   characters: character[];
+  character?: character;
   allCharacters: character[];
   getCharacters: () => Promise<void>;
   locations: any;
@@ -29,4 +30,5 @@ export interface store {
   alphabeticalOrder: (order: string) => void;
   filterLocation: (locartion: string) => void;
   filterOrigin: (origin: string) => void;
+  getCharacter: (id: string | undefined) => Promise<void>;
 }

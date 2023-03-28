@@ -1,7 +1,8 @@
 import style from "./Presentation.module.css";
 import TypeWriterEffect from "react-typewriter-effect";
-
+import { useNavigate } from "react-router-dom";
 function Presentation() {
+  const navigte = useNavigate();
   return (
     <div className={style.container}>
       <img src="/Home-2.jpg" alt="Home" className={style.image} />
@@ -26,7 +27,14 @@ function Presentation() {
           everything you need to immerse yourself in the world of Rick and
           Morty.{" "}
         </p>
-        <button className={style.button}>ARE YOU READY?</button>
+        <button
+          className={style.button}
+          onClick={() => {
+            navigte("/character");
+          }}
+        >
+          ARE YOU READY?
+        </button>
       </div>
     </div>
   );

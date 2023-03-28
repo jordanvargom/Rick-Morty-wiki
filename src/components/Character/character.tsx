@@ -11,7 +11,6 @@ function Character() {
   const [pagina, setPagina] = useState<number>(1);
   const [cantidad, setCantidad] = useState<number>(8);
   const { characters, getCharacters, getLocation, locations } = useStore();
-  console.log(characters);
   const render = search(buscador, characters);
   const maximo = render.length / cantidad;
   useEffect(() => {

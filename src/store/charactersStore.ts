@@ -84,4 +84,13 @@ export const useStore = create<store>((sset) => ({
       originsFilter: origin,
     }));
   },
+  getCharacter: async (id) => {
+    const res = await axios.get(
+      `https://rickandmortyapi.com/api/character/${id}`
+    );
+    sset((state) => ({
+      ...state,
+      character: res.data,
+    }));
+  },
 }));
