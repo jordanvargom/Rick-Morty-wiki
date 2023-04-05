@@ -11,6 +11,7 @@ function CharacterDetail() {
   useEffect(() => {
     getCharacter(id);
   }, []);
+  console.log(character);
   return (
     <div className={style.container}>
       {character ? (
@@ -51,8 +52,7 @@ function CharacterDetail() {
               </div>
             </div>
           </div>
-          <CharacterEpisode />
-          <CharacterLocation />
+          <CharacterEpisode episodes={character.episode} />
         </>
       ) : null}
     </div>
