@@ -27,5 +27,12 @@ body {
   background-color: none;
   transition: all 0.3s ease-in-out;
   overflow-x: hidden;
+  font-variant-ligatures: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  text-decoration-skip-ink: auto;
+  font-weight: normal;
+  word-wrap: break-word;
+  font-kerning: normal;
 }
 

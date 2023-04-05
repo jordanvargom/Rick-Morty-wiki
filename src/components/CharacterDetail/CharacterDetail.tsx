@@ -12,11 +12,44 @@ function CharacterDetail() {
     getCharacter(id);
   }, []);
   return (
-    <div>
+    <div className={style.container}>
       {character ? (
         <>
           <div className={style.characterContainer}>
-            <img src={character?.image} alt="" />
+            <div className={style.imageContainer}>
+              <img
+                src={character?.image}
+                alt={character.name}
+                className={style.image}
+              />
+            </div>
+            <div className={style.content}>
+              <div className={style.seccion}>
+                <h2>{character.name}</h2>
+                <span className={style.status}>
+                  <span
+                    className={
+                      character.status === "Alive"
+                        ? style.iconAlive
+                        : style.iconDeath
+                    }
+                  ></span>
+                  {character.status} - {character.species}
+                </span>
+              </div>
+              <div className={style.seccion}>
+                <span className={style.textGray}>
+                  Last known location:
+                  <h4>{character.location.name}</h4>
+                </span>
+              </div>
+              <div className={style.seccion}>
+                <span className={style.textGray}>
+                  First seen in:
+                  <h4>{character.origin.name}</h4>
+                </span>
+              </div>
+            </div>
           </div>
           <CharacterEpisode />
           <CharacterLocation />

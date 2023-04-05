@@ -4,14 +4,16 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  min-height:500px;
 }
 .image{
   object-fit: cover;
   height:450px;
   width: 300px;
   border-radius: 15px;
-  box-shadow: 3px 3px 10px 6px #e1e1e1;
+  box-shadow: 3px 3px 10px 6px #5906ad;
 }
+
 
 .textContainer{
   height: 100%;
