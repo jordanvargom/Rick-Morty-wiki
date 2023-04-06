@@ -44,6 +44,10 @@ const SearchBar: React.FC<{
     filterLocation(location);
     setPagina(1);
   };
+  function handleChange(e: any) {
+    setBuscador(e.target.value);
+    setPagina(1);
+  }
   useEffect(() => {
     getLocation();
   }, []);
@@ -58,7 +62,7 @@ const SearchBar: React.FC<{
               autoComplete="false"
               placeholder="Name"
               type="text"
-              onChange={(e) => setBuscador(e.target.value)}
+              onChange={handleChange}
             />
             <span className={style.input_border}></span>
           </div>
